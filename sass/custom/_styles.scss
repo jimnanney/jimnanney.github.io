@@ -7,3 +7,8 @@
     height: 110px;
 }
 
+$page-bg: #888;
+
+html {
+  background: $page-bg; // image-url('line-tile.png') top left;
+}
