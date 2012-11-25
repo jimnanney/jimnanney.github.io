@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Jim Nanney]]></title>
-  <link href="http://jimnanney.github.com/atom.xml" rel="self"/>
-  <link href="http://jimnanney.github.com/"/>
-  <updated>2012-11-24T20:28:03-06:00</updated>
-  <id>http://jimnanney.github.com/</id>
+  <link href="http://blog.jimnanney.com/atom.xml" rel="self"/>
+  <link href="http://blog.jimnanney.com/"/>
+  <updated>2012-11-24T20:34:55-06:00</updated>
+  <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
     

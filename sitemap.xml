@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://jimnanney.github.com/about/</loc>
-        <lastmod>2012-11-24T20:07:00-06:00</lastmod>
+        <loc>http://blog.jimnanney.com/about/</loc>
+        <lastmod>2012-11-24T20:34:35-06:00</lastmod>
     </url>
     <url>
-        <loc>http://jimnanney.github.com/blog/archives/</loc>
+        <loc>http://blog.jimnanney.com/blog/archives/</loc>
         <lastmod>2012-11-24T19:32:41-06:00</lastmod>
     </url>
     <url>
-        <loc>http://jimnanney.github.com/</loc>
+        <loc>http://blog.jimnanney.com/</loc>
         <lastmod>2012-11-24T19:32:41-06:00</lastmod>
     </url>
 </urlset>
