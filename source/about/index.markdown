@@ -5,6 +5,8 @@ comments: false
 sharing: false
 footer: true
 ---
+
+{% img left /images/me.jpg/ 272 377 'Jim Nanney' 'Picture of Jim Nanney' %}
 My name is Jim Nanney.  I love to play with computers and make them do incredible things. I am a perpetual student of software craftsmanship.  I've done many things with computers since I was a young kid in the early 80s.  My first computer was purchased in 1980 and had so little room on it that this page wouldn't even fit. I am also a father of 3 wonderful girls and a husband to the most intelligent, beautiful, creative woman in the world.
 
 In the past I have done many things, and seem to have become a jack of all trades. I have run BBSs (pre-internet message boards).  I have been a systems admin and network admin. And yes, I have some pretty good linux chops.  I got my RHCE in 2010.  I have written C and assembly code.  I have built hardware devices including my own VGA card. I've developed firmware for several hardware projects.
