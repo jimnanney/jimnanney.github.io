@@ -10,7 +10,7 @@ footer: true
 My name is Jim Nanney. As the title of the blog suggests, I am a perpetual student of software craftsmanship.  That means I enjoy thinking about design, planning, building, and everything related to software construction until it becomes artwork created by a true craftsman.  One day, I will be that craftsman. 
 
 I've done many things with computers since I was a young kid in the early 80's.  My first computer was purchased in 1980 and had so little room on it that this page wouldn't even fit. Since that time I seem to have become a jack of all trades. I have run BBSs (pre-internet message boards).  I have been a systems admin and network admin. And yes, I have some pretty good linux chops.  At the urging of a good friend I went on to obtain my RHCE in 2010. 
-As for software, I have written C and Assembly code for software and firmware. I have built hardware devices including my own VGA card..
+As for software, I have written C and Assembly code for software and firmware. I have built hardware devices including my own VGA card.
 
 Currently I live in Biloxi, MS and work as a developer building web applications. I am a father of 3 wonderful girls and a husband to the most intelligent, beautiful, creative woman in the world.
 

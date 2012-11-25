@@ -20,7 +20,7 @@ The experience was extremely new and I had no idea of what to expect.  So much s
 * tmux is a great tool, however keybinding and scrollbuffers are hard to overcome.
 * Google+ Hangouts and screensharing are slow, but essential to vercoming the small setup issues
 * Custom vim and tmux keybindings are also a hinderence. Less is more.
-* In your first session between two unfamiliar people, expect tool problems to be the big issue and take most of the time allotted..
+* In your first session between two unfamiliar people, expect tool problems to be the big issue and take most of the time allotted.
 
 ### Suggestions
 * The first time, pair with someone who has done it before, lean on their experience.
