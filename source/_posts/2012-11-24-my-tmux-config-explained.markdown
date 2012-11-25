@@ -3,7 +3,7 @@ layout: post
 title: "My tmux config Explained"
 date: 2012-11-24 23:42
 comments: true
-categories: 
+categories: ['Remote Pairing', 'tmux', 'Config']
 ---
 
 Before I get too far into my posts on pairing I wanted to start adding my configuration files and why I have chosen to use the pieces in them.
