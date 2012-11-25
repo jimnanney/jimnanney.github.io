@@ -2,7 +2,7 @@
 layout: post
 title: "My tmux config Explained"
 date: 2012-11-24 21:28
-comments: false
+comments: true
 categories: 
 ---
 
