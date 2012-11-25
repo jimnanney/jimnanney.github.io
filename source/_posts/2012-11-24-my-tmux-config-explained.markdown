@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 
-Before I get too far into my posts on pairing I wanted to start adding my configuration files and why I have the chosen to use the pieces in them.
+Before I get too far into my posts on pairing I wanted to start adding my configuration files and why I have chosen to use the pieces in them.
 
 I must admit that prior to this week I had never used tmux.  I heard the ruby rogues talk about it on their podacst. However, being a previous Linux admin, I have used and taught others to use screen for any task that was important, or long running.  Largely due to the simple fact that a session could be detached and reattached.
 
