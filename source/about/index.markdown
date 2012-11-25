@@ -3,7 +3,6 @@ layout: page
 title: "About Me"
 comments: false
 sharing: false
-published: true
 footer: true
 ---
 My name is Jim Nanney.  I love to play with computers and make them do incredible things. I am a perpetual student of software craftsmanship.  I've done many things with computers since I was a young kid in the early 80s.  My first computer was purchased in 1980 and had so little room on it that this page wouldn't even fit. I am also a father of 3 wonderful girls and a husband to the most intelligent, beautiful, creative woman in the world.
