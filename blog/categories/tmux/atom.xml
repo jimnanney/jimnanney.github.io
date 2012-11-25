@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Jim Nanney]]></title>
-  <link href="http://blog.jimnanney.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: tmux | Jim Nanney]]></title>
+  <link href="http://blog.jimnanney.com/blog/categories/tmux/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
   <updated>2012-11-25T09:31:24-06:00</updated>
   <id>http://blog.jimnanney.com/</id>
@@ -27,7 +27,7 @@
 
 <p>Yesterday, I took the plunge and paired with another person remotely. I am still very very new to ruby, rails, vim, tmux, git and collaborative programming.  It takes a lot of patience and understanding in that first session. It also takes a lot of preparation, of which I had done little.</p>
 
-<p>The experience was extremely new and I had no idea of what to expect.  So much so that I didn&#8217;t have any defined questions that I was looking to have answered.  This should have served as a clue I needed to put off the session and do more homework and planning.</p>
+<p>The experience was extremely new and I had no idea of what to expect.  So much so that I didn't have any defined questions that I was looking to have answered.  This should have served as a clue I needed to put off the session and do more homework and planning.</p>
 
 <h3>The Pains:</h3>
 
@@ -48,7 +48,7 @@
 <li>Set a time limit and stick to it.</li>
 <li>If stuck on a particular problem, table it for later. Pairing is about collaboration, not two people googling solutions while remoting.  If it is a showstopper, then agree to stop and agree to come back later once you both have had a chance to attempt the solution.</li>
 <li>Pair programming is different than just writing code.  You are in constant communication and that is more exhausting than coding by yourself.</li>
-<li>Each of you has their own strengths.  If you allow one person to drive and one to talk and stick with that strategy you can learn almost by osmosis.  It also presents the opportunity to ask &#8220;Hey, what was that you just did?&#8221;</li>
+<li>Each of you has their own strengths.  If you allow one person to drive and one to talk and stick with that strategy you can learn almost by osmosis.  It also presents the opportunity to ask "Hey, what was that you just did?"</li>
 </ul>
 
 
@@ -71,9 +71,9 @@
 
 
 <p>
-So before I break out the sections of my tmux.conf, I&#8217;ll present it in its entirety here.  As an aside, each of these things I got from Brian P. Hogan&#8217;s book called <a href="http://pragprog.com/book/bhtmux/tmux">&#8220;tmux: Productive Mouse-Free Development&#8221;</a>. (Not a referral link)</p>
+So before I break out the sections of my tmux.conf, I'll present it in its entirety here.  As an aside, each of these things I got from Brian P. Hogan's book called <a href="http://pragprog.com/book/bhtmux/tmux">"tmux: Productive Mouse-Free Development"</a>. (Not a referral link)</p>
 
-<div><script src='https://gist.github.com/4142309.js?file='></script>
+<p><div><script src='https://gist.github.com/4142309.js?file='></script>
 <noscript><pre><code>set -g prefix C-a
 unbind C-b
 set -s escape-time 1
@@ -96,59 +96,53 @@ bind -r L resize-pane -R 5
 set -g repeat-time 1000
 set -g status-bg colour33
 setw -g mode-keys vi</code></pre></noscript></div>
-
+</p>
 
 <p>Firstly, in screen every command is prefixed with Control A.  Tmux uses Control B.  I remap it to Control A and unbind the original Control B.  This is also very useful if you remap your caps lock key to control as then your fingers do not leave the home row.</p>
 
-<figure class='code'><figcaption><span>Remap Prefix to Control-A </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Remap Prefix to Control-A </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>set -g prefix C-a
-</span><span class='line'>unbind C-b</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>unbind C-b</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>Next I set the escape detection time low to avoid conflicts with vim.  Further detail on this can be found in Brian P. Hogan's book, but trust me, if you use vim in a tmux session, you'll want this.</p>
 
-<p>Next I set the escape detection time low to avoid conflicts with vim.  Further detail on this can be found in Brian P. Hogan&#8217;s book, but trust me, if you use vim in a tmux session, you&#8217;ll want this.</p>
-
-<figure class='code'><figcaption><span>Fix Escape Detection </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Fix Escape Detection </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>set -s escape-time 1</span></code></pre></td></tr></table></div></figure>
-
+</pre></td><td class='code'><pre><code class=''><span class='line'>set -s escape-time 1</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>These next two are convenience only and should make VB programmers happy :P  All they do is set the start value of the numbering schemes for windows and panes to 1 instead of 0.</p>
 
-<figure class='code'><figcaption><span>Renumber from 1 </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Renumber from 1 </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>set -g base-index 1
-</span><span class='line'>set -g pane-base-index 1</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'>set -g pane-base-index 1</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Next while editing the tmux.conf file I want to be able to reload it with a shortcut key instead of <code>C-A :</code> followed by typing <code>source-file ~/.tmux.conf</code></p>
 
-<figure class='code'><figcaption><span>Reload </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Reload </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bind r source-file ~/.tmux.conf\; display "Reloaded!"</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bind r source-file ~/.tmux.conf\; display "Reloaded!"</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>I also don't want to remap away C-A from whatever programs I am using.  So I hit C-A twice and it gets sent to the underlying program instead of tmux with the following.</p>
 
-<p>I also don&#8217;t want to remap away C-A from whatever programs I am using.  So I hit C-A twice and it gets sent to the underlying program instead of tmux with the following.</p>
-
-<figure class='code'><figcaption><span>Send C-a to program </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Send C-a to program </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bind C-a send-prefix</span></code></pre></td></tr></table></div></figure>
-
+</pre></td><td class='code'><pre><code class=''><span class='line'>bind C-a send-prefix</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Tmux lets you split a window into panes horizontally and vertically with <code>C-a %</code> and <code>C-a "</code>  But the pipe and dash are more intuitive.</p>
 
-<figure class='code'><figcaption><span>More intuitive Window Pane Splits </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>More intuitive Window Pane Splits </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>bind | split-window -h
-</span><span class='line'>bind - split-window -v</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>bind - split-window -v</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>Now for the fun stuff.  I use vim constantly.  I am not good at it, but I use it nonetheless.  I want to move around the panes using vim's movement keys.</p>
 
-<p>Now for the fun stuff.  I use vim constantly.  I am not good at it, but I use it nonetheless.  I want to move around the panes using vim&#8217;s movement keys.</p>
-
-<figure class='code'><figcaption><span>Use vim&#8217;s h j k l movement keys </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Use vim's h j k l movement keys </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -156,21 +150,19 @@ setw -g mode-keys vi</code></pre></noscript></div>
 </pre></td><td class='code'><pre><code class=''><span class='line'>bind h select-pane -L
 </span><span class='line'>bind j select-pane -D
 </span><span class='line'>bind k select-pane -U
-</span><span class='line'>bind l select-pane -R</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>bind l select-pane -R</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>Switching windows should be the same way, using vim's h and l movement keys. The -r makes it repeatable without having to press C-a again.</p>
 
-<p>Switching windows should be the same way, using vim&#8217;s h and l movement keys. The -r makes it repeatable without having to press C-a again.</p>
-
-<figure class='code'><figcaption><span>Use vim&#8217;s h and l to switch windows </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Use vim's h and l to switch windows </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>bind -r C-h select-window -t :-
-</span><span class='line'>bind -r C-l select-window -t :+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>bind -r C-l select-window -t :+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>Let's now add vim movement key emulations that go to resizing a pane.  The defaults are C-Arrow keys, but this isn't home row friendly.  Again notice the -r. And also notice that the movement keys are capitalized.</p>
 
-<p>Let&#8217;s now add vim movement key emulations that go to resizing a pane.  The defaults are C-Arrow keys, but this isn&#8217;t home row friendly.  Again notice the -r. And also notice that the movement keys are capitalized.</p>
-
-<figure class='code'><figcaption><span>Resize from home row keys </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Resize from home row keys </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -178,24 +170,21 @@ setw -g mode-keys vi</code></pre></noscript></div>
 </pre></td><td class='code'><pre><code class=''><span class='line'>bind -r H resize-pane -L 5
 </span><span class='line'>bind -r J resize-pane -D 5
 </span><span class='line'>bind -r K resize-pane -U 5
-</span><span class='line'>bind -r L resize-pane -R 5</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>bind -r L resize-pane -R 5</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>Now some of you are faster typists than I and won't need this.  But I don't want to repeat the C-a while resizing and I may pause less than a second to see the change.  This 1000 represents 1 whole second to repeat my last keystroke.</p>
 
-<p>Now some of you are faster typists than I and won&#8217;t need this.  But I don&#8217;t want to repeat the C-a while resizing and I may pause less than a second to see the change.  This 1000 represents 1 whole second to repeat my last keystroke.</p>
-
-<figure class='code'><figcaption><span>Longer delay for allowing a repeated keystroke </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Longer delay for allowing a repeated keystroke </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>set -g repeat-time 1000</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>set -g repeat-time 1000</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-
-<p>Next is the colors, which I&#8217;ll leave for you to get your own color schemes.  I am definitely not a designer.</p>
+<p>Next is the colors, which I'll leave for you to get your own color schemes.  I am definitely not a designer.</p>
 
 <p>Lastly when in the scroll mode which allows copy and scrollbuffer movement, I want to use the vi keystrokes to navigate the scrollbuffer.</p>
 
-<figure class='code'><figcaption><span>Scroll Buffer Movement like Vim </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Scroll Buffer Movement like Vim </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>setw -g mode-keys vi</span></code></pre></td></tr></table></div></figure>
-
+</pre></td><td class='code'><pre><code class=''><span class='line'>setw -g mode-keys vi</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>And that is the end of my .tmux.conf explanation.  These will get you moving like vim and splitting panes all over the place.  Enjoy!</p>
 ]]></content>
