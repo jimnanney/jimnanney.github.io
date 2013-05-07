@@ -4,7 +4,7 @@
   <title><![CDATA[Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-06T22:03:19-05:00</updated>
+  <updated>2013-05-06T22:14:49-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -20,7 +20,7 @@
     <id>http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers</id>
     <content type="html"><![CDATA[<p>Vim adventures has taught me an incredible new (to me) trick.  The ability to paste a previously deleted line is easy.  Use <strong>p</strong> or <strong>P</strong> to paste it.  But what if it was the third time you hit <strong>dd</strong> and you wanted to paste in the first thing you deleted.  I cannot begin to count the number of times I needed to do that.  Further down, I&#8217;ll reveal this secret, but first the backstory:</p>
 
-<p>Recently I saw a link to http://vim-adventures.com and followed.  It was appealing, but seemed basic in the first three levels.  So I decided not to purchase the subscription.</p>
+<p>Recently I saw a link to <a href="http://vim-adventures.com/" title="Vim Adventures">Vim-Adventures.com</a> and followed.  It was appealing, but seemed basic in the first three levels.  So I decided not to purchase the subscription.</p>
 
 <p>And then, at Rails Conf 2013 in Portland, I met up with a friend who was working through one of the levels.  I immediately asked if she was playing vim adventures and she said yes and that she was stuck.  Of course I offered to assist.  This proved several points to me right away.</p>
 
