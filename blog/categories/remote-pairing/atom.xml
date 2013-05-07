@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Remote Pairing | Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/blog/categories/remote-pairing/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2012-11-25T10:02:52-06:00</updated>
+  <updated>2013-05-06T20:52:12-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -35,7 +35,7 @@
 <li>tmux is a great tool, however keybinding and scrollbuffers are hard to overcome.</li>
 <li>Google+ Hangouts and screensharing are slow, but essential to vercoming the small setup issues</li>
 <li>Custom vim and tmux keybindings are also a hinderence. Less is more.</li>
-<li>In your first session between two unfamiliar people, expect tool problems to be the big issue and take most of the time allotted..</li>
+<li>In your first session between two unfamiliar people, expect tool problems to be the big issue and take most of the time allotted.</li>
 </ul>
 
 

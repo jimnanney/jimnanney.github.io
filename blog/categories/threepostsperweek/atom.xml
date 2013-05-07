@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: threepostsperweek | Jim Nanney]]></title>
+  <link href="http://blog.jimnanney.com/blog/categories/threepostsperweek/atom.xml" rel="self"/>
+  <link href="http://blog.jimnanney.com/"/>
+  <updated>2013-05-06T20:52:12-05:00</updated>
+  <id>http://blog.jimnanney.com/</id>
+  <author>
+    <name><![CDATA[Jim Nanney]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[VIM Automatic Registers]]></title>
+    <link href="http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/"/>
+    <updated>2013-05-06T19:48:00-05:00</updated>
+    <id>http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers</id>
+    <content type="html"><![CDATA[<p>Vim adventures has taught me an incredible new (to me) trick.  The ability to paste a previously deleted line is easy.  Use <strong>yy</strong> to paste it.  But what if it was the third time you hit <strong>dd</strong> and you wanted to paste in the first thing you deleted.  I cannot begin to count the number of times I needed to do that.  Further down, I'll reveal this secret, but first the backstory:</p>
+
+<p>Recently I saw a link to http://vim-adventures.com and followed.  It was appealing, but seemed basic in the first three levels.  So I decided not to purchase the subscription.</p>
+
+<p>And then, at Rails Conf 2013 in Portland, I met up with a friend who was working through one of the levels.  I immediately asked if she was playing vim adventures and she said yes and that she was stuck.  Of course I offered to assist.  This proved several points to me right away.</p>
+
+<p>First, I am not as good with VIM as I had thought.
+Second, I am a horrible teacher of things I have little grasp on.
+Third, Vim Adventures advances terribly quick after level 3 and is well worth the subscription.</p>
+
+<p>It was inevitable afterwards that I subscribed.  I have learned a ton, and the most profound ended up being the automatic buffers.</p>
+
+<p>Here's how they work:</p>
+
+<p>Given these lines:</p>
+
+<ol>
+<li>Delete me last</li>
+<li>Delete me thrid.</li>
+<li>Delete me first.</li>
+</ol>
+
+
+<p>If you delete line three by using <strong>dd</strong>, followed by line 1 with another <strong>dd</strong> and then line 2 with again a <strong>dd</strong>, several deletion registers would be created.</p>
+
+<p>You can see these by typing <strong>:reg</strong></p>
+
+<p>First, notice they are numbered from <strong>"0</strong> to <strong>"9</strong> and that they are in order from first in to last in. They also rotate out as more are added.</p>
+
+<p>So to paste the first deletion from above, you would use <strong>"3</strong>p</p>
+
+<p>This simple thing has bothered me many times, but not enough to look it up. After playing vim adventures to level 10, I've learned this new trick.</p>
+]]></content>
+  </entry>
+  
+</feed>

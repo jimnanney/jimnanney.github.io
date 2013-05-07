@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Lessons - Jim Nanney</title>
+  <title>VIM Automatic Registers - Jim Nanney</title>
   <meta name="author" content="Jim Nanney">
 
   
-  <meta name="description" content="Category: Lessons">
+  <meta name="description" content="Vim adventures has taught me an incredible new (to me) trick. The ability to paste a previously deleted line is easy. Use yy to paste it. But what if &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.jimnanney.comblog/categories/lessons/">
+  <link rel="canonical" href="http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,36 +65,126 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Lessons</h1>
+    
+      <h1 class="entry-title">VIM Automatic Registers</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-06T19:48:00-05:00" pubdate data-updated="true">May 6<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>Vim adventures has taught me an incredible new (to me) trick.  The ability to paste a previously deleted line is easy.  Use <strong>yy</strong> to paste it.  But what if it was the third time you hit <strong>dd</strong> and you wanted to paste in the first thing you deleted.  I cannot begin to count the number of times I needed to do that.  Further down, I&#8217;ll reveal this secret, but first the backstory:</p>
 
-  
-  <h2>2012</h2>
+<p>Recently I saw a link to http://vim-adventures.com and followed.  It was appealing, but seemed basic in the first three levels.  So I decided not to purchase the subscription.</p>
 
-<article>
-  
-<h1><a href="/blog/2012/11/25/remote-pairing-lessons-learned/">Remote Pairing - Lessons Learned</a></h1>
-<time datetime="2012-11-25T09:07:00-06:00" pubdate><span class='month'>Nov</span> <span class='day'>25</span> <span class='year'>2012</span></time>
+<p>And then, at Rails Conf 2013 in Portland, I met up with a friend who was working through one of the levels.  I immediately asked if she was playing vim adventures and she said yes and that she was stuck.  Of course I offered to assist.  This proved several points to me right away.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/lessons/'>Lessons</a>, <a class='category' href='/blog/categories/remote-pairing/'>Remote Pairing</a>, <a class='category' href='/blog/categories/tmux/'>tmux</a></span>
-</footer>
+<p>First, I am not as good with VIM as I had thought.
+Second, I am a horrible teacher of things I have little grasp on.
+Third, Vim Adventures advances terribly quick after level 3 and is well worth the subscription.</p>
+
+<p>It was inevitable afterwards that I subscribed.  I have learned a ton, and the most profound ended up being the automatic buffers.</p>
+
+<p>Here&#8217;s how they work:</p>
+
+<p>Given these lines:</p>
+
+<ol>
+<li>Delete me last</li>
+<li>Delete me thrid.</li>
+<li>Delete me first.</li>
+</ol>
 
 
-</article>
+<p>If you delete line three by using <strong>dd</strong>, followed by line 1 with another <strong>dd</strong> and then line 2 with again a <strong>dd</strong>, several deletion registers would be created.</p>
 
+<p>You can see these by typing <strong>:reg</strong></p>
+
+<p>First, notice they are numbered from <strong>&#8220;0</strong> to <strong>&#8220;9</strong> and that they are in order from first in to last in. They also rotate out as more are added.</p>
+
+<p>So to paste the first deletion from above, you would use <strong>&#8220;3</strong>p</p>
+
+<p>This simple thing has bothered me many times, but not enough to look it up. After playing vim adventures to level 10, I&#8217;ve learned this new trick.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Jim Nanney</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-06T19:48:00-05:00" pubdate data-updated="true">May 6<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/threepostsperweek/'>threepostsperweek</a>, <a class='category' href='/blog/categories/vim/'>vim</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/" data-via="jnanney" data-counturl="http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/25/remote-pairing-lessons-learned/" title="Previous Post: Remote Pairing - Lessons Learned">&laquo; Remote Pairing - Lessons Learned</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -187,7 +277,10 @@
       var disqus_shortname = 'jimnanney';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/';
+        var disqus_url = 'http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
