@@ -4,7 +4,7 @@
   <title><![CDATA[Category: threepostsperweek | Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/blog/categories/threepostsperweek/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-06T22:16:55-05:00</updated>
+  <updated>2013-05-06T22:18:29-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -38,13 +38,13 @@
 <p>Given these lines:</p>
 
 <ol>
-<li>Delete me last</li>
+<li>Delete me last.</li>
 <li>Delete me third.</li>
 <li>Delete me first.</li>
 </ol>
 
 
-<p>If you delete line three by using <strong>dd</strong>, followed by line 1 with another <strong>dd</strong> and then line 2 with again a <strong>dd</strong>, several deletion registers would be created.</p>
+<p>If you delete line three by using <strong>dd</strong>, followed by line one with another <strong>dd</strong> and then line two with again a <strong>dd</strong>, several deletion registers would be created.</p>
 
 <p>You can see these by typing <strong>:reg</strong></p>
 
