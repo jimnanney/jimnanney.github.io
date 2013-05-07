@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/blog/categories/vim/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-06T22:14:49-05:00</updated>
+  <updated>2013-05-06T22:16:55-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -24,9 +24,12 @@
 
 <p>And then, at Rails Conf 2013 in Portland, I met up with a friend who was working through one of the levels.  I immediately asked if she was playing vim adventures and she said yes and that she was stuck.  Of course I offered to assist.  This proved several points to me right away.</p>
 
-<p>First, I am not as good with VIM as I had thought.
-Second, I am a horrible teacher of things I have little grasp on.
-Third, Vim Adventures advances terribly quick after level 3 and is well worth the subscription.</p>
+<ul>
+<li>First, I am not as good with VIM as I had thought.</li>
+<li>Second, I am a horrible teacher of things I have little grasp on.</li>
+<li>Third, Vim Adventures advances terribly quick after level 3 and is well worth the subscription.</li>
+</ul>
+
 
 <p>It was inevitable afterwards that I subscribed.  I have learned a ton, and the most profound ended up being the automatic buffers.</p>
 
