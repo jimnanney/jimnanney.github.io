@@ -4,7 +4,7 @@
   <title><![CDATA[Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-06T22:29:49-05:00</updated>
+  <updated>2013-05-09T22:00:54-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[More Remote Pairing Tips]]></title>
+    <link href="http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/"/>
+    <updated>2013-05-09T20:51:00-05:00</updated>
+    <id>http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips</id>
+    <content type="html"><![CDATA[<p>In my latest session of what I am learning I have begun setting up an EC2 instance to handle remote pair programming.  The biggest reason to do this is because it eliminates the need to setup so many little pieces at home.  It seems every remote pair session I start, begins with me explaining the ssh command to login to my laptop only to find that my dynamic dns is changed and ssh doesn&#8217;t work.  Inevitably I also miss that my router has port forwarded ssh to the wrong machine. Then there is the need to make sure a common user is setup, or that the permissions are setup on the socket that tmux uses.</p>
+
+<blockquote><p>In the classic scream of the 80s: STOP THE MADNESS!!!!!!</p></blockquote>
+
+<p>If something is painful, stop, evaluate what makes it painful, and find a way to relieve at least some of it.  In this case, that means stop reconfiguring everything each time and do it once on Amazon&#8217;s EC2 instances.</p>
+
+<p>So now that the mini rant is done, let me point out some great tips on remote pairing.</p>
+
+<h3>Pick a sensible project</h3>
+
+<p>If this is the first session you and someone else has ever done.  Don&#8217;t do serious work. Do a code kata, or pick a code retreat style project. This enables you to focus your attention on how you work together, not the problem you are trying to solve.  Pairing is about communicating, and if you don&#8217;t give yourself time to learn how each other communicates, you won&#8217;t solve problems together well. If you don&#8217;t have one, let me suggest one from my friend <a href="http://billgathen.com/" title="My #rubyfriend Bill Gathen">Bill Gathen</a>. He put together the <a href="http://billgathen.com/2013/01/18/7_degrees_of_fizzbuzz.html" title="7 Degrees of Fizzbuzz, learning ruby for beginners, kata for old hands">7 Degrees of Fizzbuzz</a> for the groups he teaches.</p>
+
+<h3>Start your tools with vanilla config files</h3>
+
+<p>If you both have wildly differing vim configurations and key remappings, only one person will be comfortable driving. Also, the same goes for tmux configs. A remapped leader key kills productivity for the driver.</p>
+
+<h3>Setup your login motd to explain how to get the session started</h3>
+
+<p>I can&#8217;t tell you how well this works to ease the nerves of the begining pair and sets the tone for the rest of the session.</p>
+
+<p>Here&#8217;s mine as an example</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  _       _         _                                   
+</span><span class='line'> ( )  _  ( )       (_ )                                 
+</span><span class='line'> | | ( ) | |   __   | |    ___    _     ___ ___     __  
+</span><span class='line'> | | | | | | /'__`\ | |  /'___) /'_`\ /' _ ` _ `\ /'__`\
+</span><span class='line'> | (_/ \_) |(  ___/ | | ( (___ ( (_) )| ( ) ( ) |(  ___/
+</span><span class='line'> `\___x___/'`\____)(___)`\____)`\___/'(_) (_) (_)`\____)
+</span><span class='line'>                                                        
+</span><span class='line'>                                                                                                              
+</span><span class='line'>I'm glad you could join me in my journey of learning Ruby, 
+</span><span class='line'>Rails, vim, and tmux. I am still new in so many regards, and 
+</span><span class='line'>I welcome your inputs, criticisms, and patience with my knowledge. 
+</span><span class='line'>I am sure we will both work well together.
+</span><span class='line'>
+</span><span class='line'>Now that you have logged in, you can join my pairing session 
+</span><span class='line'>by typing the following at your prompt:
+</span><span class='line'>
+</span><span class='line'>~~~
+</span><span class='line'>tmux -S /usr/local/tmux/learning attach
+</span><span class='line'>~~~
+</span><span class='line'>
+</span><span class='line'>Then increase the size of your terminal as far as it can go.
+</span><span class='line'>If your screen resolution is larger than 1920x1200 your terminal 
+</span><span class='line'>will be filled with dots outside of my screen's resolution.
+</span><span class='line'>
+</span><span class='line'>I tend to tab complete alot.  In Mac terminals this causes a *lot* 
+</span><span class='line'>of audible bell sounds. If you want to turn them off, go to preferences, 
+</span><span class='line'>Settings, and under the advanced tab, uncheck audible bell.
+</span><span class='line'>
+</span><span class='line'>Happy Pairing!
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[VIM Automatic Registers]]></title>

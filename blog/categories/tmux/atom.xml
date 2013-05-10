@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tmux | Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/blog/categories/tmux/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-06T22:29:49-05:00</updated>
+  <updated>2013-05-09T22:00:54-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[More Remote Pairing Tips]]></title>
+    <link href="http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/"/>
+    <updated>2013-05-09T20:51:00-05:00</updated>
+    <id>http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips</id>
+    <content type="html"><![CDATA[<p>In my latest session of what I am learning I have begun setting up an EC2 instance to handle remote pair programming.  The biggest reason to do this is because it eliminates the need to setup so many little pieces at home.  It seems every remote pair session I start, begins with me explaining the ssh command to login to my laptop only to find that my dynamic dns is changed and ssh doesn't work.  Inevitably I also miss that my router has port forwarded ssh to the wrong machine. Then there is the need to make sure a common user is setup, or that the permissions are setup on the socket that tmux uses.</p>
+
+<blockquote><p>In the classic scream of the 80s: STOP THE MADNESS!!!!!!</p></blockquote>
+
+<p>If something is painful, stop, evaluate what makes it painful, and find a way to relieve at least some of it.  In this case, that means stop reconfiguring everything each time and do it once on Amazon's EC2 instances.</p>
+
+<p>So now that the mini rant is done, let me point out some great tips on remote pairing.</p>
+
+<h3>Pick a sensible project</h3>
+
+<p>If this is the first session you and someone else has ever done.  Don't do serious work. Do a code kata, or pick a code retreat style project. This enables you to focus your attention on how you work together, not the problem you are trying to solve.  Pairing is about communicating, and if you don't give yourself time to learn how each other communicates, you won't solve problems together well. If you don't have one, let me suggest one from my friend <a href="http://billgathen.com/" title="My #rubyfriend Bill Gathen">Bill Gathen</a>. He put together the <a href="http://billgathen.com/2013/01/18/7_degrees_of_fizzbuzz.html" title="7 Degrees of Fizzbuzz, learning ruby for beginners, kata for old hands">7 Degrees of Fizzbuzz</a> for the groups he teaches.</p>
+
+<h3>Start your tools with vanilla config files</h3>
+
+<p>If you both have wildly differing vim configurations and key remappings, only one person will be comfortable driving. Also, the same goes for tmux configs. A remapped leader key kills productivity for the driver.</p>
+
+<h3>Setup your login motd to explain how to get the session started</h3>
+
+<p>I can't tell you how well this works to ease the nerves of the begining pair and sets the tone for the rest of the session.</p>
+
+<p>Here's mine as an example</p>
+
+<p>```</p>
+
+<hr />
+
+<p> ( )  _  ( )       (<em> )                               <br/>
+ | | ( ) | |   <strong>   | |    </strong></em>    _     <strong><em> </em></strong>     <strong><br/>
+ | | | | | | /'</strong><code>\ | |  /'___) /'_</code>\ /' _ <code>_</code>\ /'<strong><code>\
+ | (_/ \_) |(  ___/ | | ( (___ ( (_) )| ( ) ( ) |(  ___/
+</code>_</strong>x<strong><em>/'<code>\____)(___)</code>_</em></strong>)<code>\___/'(_) (_) (_)</code>____)</p>
+
+<p>I'm glad you could join me in my journey of learning Ruby,
+Rails, vim, and tmux. I am still new in so many regards, and
+I welcome your inputs, criticisms, and patience with my knowledge.
+I am sure we will both work well together.</p>
+
+<p>Now that you have logged in, you can join my pairing session
+by typing the following at your prompt:</p>
+
+<p><del>
+tmux -S /usr/local/tmux/learning attach
+</del></p>
+
+<p>Then increase the size of your terminal as far as it can go.
+If your screen resolution is larger than 1920x1200 your terminal
+will be filled with dots outside of my screen's resolution.</p>
+
+<p>I tend to tab complete alot.  In Mac terminals this causes a <em>lot</em>
+of audible bell sounds. If you want to turn them off, go to preferences,
+Settings, and under the advanced tab, uncheck audible bell.</p>
+
+<p>Happy Pairing!</p>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Remote Pairing - Lessons Learned]]></title>
