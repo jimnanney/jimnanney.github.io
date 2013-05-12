@@ -4,7 +4,7 @@
   <title><![CDATA[Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-09T22:02:19-05:00</updated>
+  <updated>2013-05-12T15:13:04-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Fixing Pow Rails 4 Startup Problem]]></title>
+    <link href="http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/"/>
+    <updated>2013-05-12T14:50:00-05:00</updated>
+    <id>http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem</id>
+    <content type="html"><![CDATA[<p>I just had an interesting problem trying to use pow for a Rails 4 project for the first time.</p>
+
+<p>Pow was reporting an error parsing the following line in  <strong>config/application.rb</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config/application.rb:11: syntax error, unexpected ':', expecting ')'
+</span><span class='line'>Bundler.require(*Rails.groups(assets: %w(development test)))</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That error message really looks like Ruby 1.8 trying to parse the new hash syntax. And in fact that is exactly what it is.</p>
+
+<p>It turns out that I had RVM configured wrong.  I use zsh and in my .zshrc I had the startup for rvm.  If the rvm script doesn&#8217;t get called the default system ruby is used with pow.  In the case of pow, it never loads the .zshrc because that is only called for interactive environments. The solution is to move the lines that call rvm from .zshrc to a new or exisiting .zshenv. Once you do this you will have to kill the exisiting pow process <strong>ps ax |grep pow</strong></p>
+
+<p>I really love using pow during development as it allows me to completely ignore the localhost:3000 and 5000 and other ports and can load the app in my browser by name instead.</p>
+
+<p>You can find pow and the documentation from <a href="http://pow.cx" title="Pow.cx">Pow.cx</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[More Remote Pairing Tips]]></title>

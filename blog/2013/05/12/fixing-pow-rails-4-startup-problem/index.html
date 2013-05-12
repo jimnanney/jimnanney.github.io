@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Config - Jim Nanney</title>
+  <title>Fixing Pow Rails 4 Startup Problem - Jim Nanney</title>
   <meta name="author" content="Jim Nanney">
 
   
-  <meta name="description" content="Category: Config">
+  <meta name="description" content="I just had an interesting problem trying to use pow for a Rails 4 project for the first time. Pow was reporting an error parsing the following line &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.jimnanney.comblog/categories/config/">
+  <link rel="canonical" href="http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,36 +65,105 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Config</h1>
+    
+      <h1 class="entry-title">Fixing Pow Rails 4 Startup Problem</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-12T14:50:00-05:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I just had an interesting problem trying to use pow for a Rails 4 project for the first time.</p>
 
-  
-  <h2>2012</h2>
+<p>Pow was reporting an error parsing the following line in  <strong>config/application.rb</strong></p>
 
-<article>
-  
-<h1><a href="/blog/2012/11/24/my-tmux-config-explained/">My tmux config Explained</a></h1>
-<time datetime="2012-11-24T23:42:00-06:00" pubdate><span class='month'>Nov</span> <span class='day'>24</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/config/'>Config</a>, <a class='category' href='/blog/categories/remote-pairing/'>Remote Pairing</a>, <a class='category' href='/blog/categories/tmux/'>tmux</a></span>
-</footer>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>config/application.rb:11: syntax error, unexpected ':', expecting ')'
+</span><span class='line'>Bundler.require(*Rails.groups(assets: %w(development test)))</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>That error message really looks like Ruby 1.8 trying to parse the new hash syntax. And in fact that is exactly what it is.</p>
 
+<p>It turns out that I had RVM configured wrong.  I use zsh and in my .zshrc I had the startup for rvm.  If the rvm script doesn&#8217;t get called the default system ruby is used with pow.  In the case of pow, it never loads the .zshrc because that is only called for interactive environments. The solution is to move the lines that call rvm from .zshrc to a new or exisiting .zshenv. Once you do this you will have to kill the exisiting pow process <strong>ps ax |grep pow</strong></p>
+
+<p>I really love using pow during development as it allows me to completely ignore the localhost:3000 and 5000 and other ports and can load the app in my browser by name instead.</p>
+
+<p>You can find pow and the documentation from <a href="http://pow.cx" title="Pow.cx">Pow.cx</a>.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Jim Nanney</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-12T14:50:00-05:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/" data-via="jnanney" data-counturl="http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/09/more-remote-pairing-tips/" title="Previous Post: More Remote Pairing Tips">&laquo; More Remote Pairing Tips</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -195,7 +264,10 @@
       var disqus_shortname = 'jimnanney';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/';
+        var disqus_url = 'http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
