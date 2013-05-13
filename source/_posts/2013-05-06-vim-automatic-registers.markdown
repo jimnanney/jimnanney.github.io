@@ -3,7 +3,9 @@ layout: post
 title: "VIM Automatic Registers"
 date: 2013-05-06 19:48
 comments: true
-categories: vim threepostsperweek
+categories: 
+- vim 
+- 3 per week
 ---
 Vim adventures has taught me an incredible new (to me) trick.  The ability to paste a previously deleted line is easy.  Use **p** or **P** to paste it.  But what if it was the third time you hit **dd** and you wanted to paste in the first thing you deleted.  I cannot begin to count the number of times I needed to do that.  Further down, I'll reveal this secret, but first the backstory:
 
