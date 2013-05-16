@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 3 per week | Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/blog/categories/3-per-week/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-12T22:51:33-05:00</updated>
+  <updated>2013-05-15T23:14:38-05:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code Happy]]></title>
+    <link href="http://blog.jimnanney.com/blog/2013/05/15/code-happy/"/>
+    <updated>2013-05-15T22:58:00-05:00</updated>
+    <id>http://blog.jimnanney.com/blog/2013/05/15/code-happy</id>
+    <content type="html"><![CDATA[<p>What a wonderful today turned out to be.  I slept so little last night, fought poor variable naming at work, had a phone conversation with another company about possibly coming to work for them, decided it was a bad choice, couldn't nap after work, and after all that, began to enjoy myself.</p>
+
+<p>I pair programmed with a new friend thanks to the #pairwithme hashtag and from that, met @Mattr.  He introduced me to a project that needed some refactoring love.  He drove, I learned lots and contributed a little.  But in the end, I got to become entranced in a new project, and even better, gained a pet project to level up on using pull requests.  I learn best by doing, but occasionally I require the mentoring of someone more versed in the project/language. Open source software and pairing really gives both of those to me.</p>
+
+<p>Overall, it just caused me to get into a happy coding place, one that is collaborative an communicative.</p>
+
+<p>I wish you all find that place.</p>
+
+<h2>Code Happy!</h2>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[More Remote Pairing Tips]]></title>
