@@ -2,7 +2,7 @@
 layout: post
 title: "My tmux config Explained"
 date: 2012-11-24 23:42
-comments: true
+comments: false
 categories: ['Remote Pairing', 'tmux', 'Config']
 ---
 

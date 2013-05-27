@@ -2,7 +2,7 @@
 layout: post
 title: "Code Happy"
 date: 2013-05-15 22:58
-comments: true
+comments: false
 categories: 
 - 3 per week
 - Happy Coding

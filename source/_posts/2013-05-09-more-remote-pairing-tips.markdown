@@ -2,7 +2,7 @@
 layout: post
 title: "More Remote Pairing Tips"
 date: 2013-05-09 20:51
-comments: true
+comments: false
 categories:
 - tmux
 - remote pairing

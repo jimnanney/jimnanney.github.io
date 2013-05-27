@@ -2,7 +2,7 @@
 layout: post
 title: "Remote Pairing - Lessons Learned"
 date: 2012-11-25 09:07
-comments: true
+comments: false
 categories: ['Remote Pairing', 'Lessons', 'tmux']
 ---
 When I first encountered and heard the term pair programming, I was amazed at the possibilities.  It takes programming to a communication exercise rather than logic puzzle, and gets two seperate minds working on the same problem.  Living in the location that I am in, pair programming was not an option unless it was remote.  Remote pairing seems like an exciting and productive way to work.

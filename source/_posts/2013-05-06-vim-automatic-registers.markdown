@@ -2,7 +2,7 @@
 layout: post
 title: "VIM Automatic Registers"
 date: 2013-05-06 19:48
-comments: true
+comments: false
 categories: 
 - vim 
 - 3 per week

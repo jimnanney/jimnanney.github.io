@@ -2,7 +2,7 @@
 layout: post
 title: "Ruby String.split Regex Gotcha"
 date: 2013-05-27 09:38
-comments: true
+comments: false
 categories: ruby basics gotcha
 ---
 

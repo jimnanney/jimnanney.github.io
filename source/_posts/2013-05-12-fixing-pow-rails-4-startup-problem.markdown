@@ -2,7 +2,7 @@
 layout: post
 title: "Fixing Pow Rails 4 Startup Problem"
 date: 2013-05-12 14:50
-comments: true
+comments: false
 categories: 
 ---
 I just had an interesting problem trying to use pow for a Rails 4 project for the first time.

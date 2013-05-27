@@ -3,7 +3,7 @@ layout: post
 title: "My Vimrc Explained"
 date: 2012-11-25 18:14
 published: false
-comments: true
+comments: false
 categories: 
 ---
 " This is Gary Bernhardt's .vimrc file
