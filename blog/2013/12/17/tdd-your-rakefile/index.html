@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Jim Nanney</title>
+  <title>TDD Your Rakefile - Jim Nanney</title>
   <meta name="author" content="Jim Nanney">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.jimnanney.com/">
+  <link rel="canonical" href="http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,15 +64,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/12/17/tdd-your-rakefile/">TDD Your Rakefile</a></h1>
+      <h1 class="entry-title">TDD Your Rakefile</h1>
     
     
       <p class="meta">
@@ -95,7 +92,7 @@
   </header>
 
 
-  <div class="entry-content"><p><em>TLDR - Rake Tasks can be broken into objects, objects can be easily TDD&#8217;d.</em></p>
+<div class="entry-content"><p><em>TLDR - Rake Tasks can be broken into objects, objects can be easily TDD&#8217;d.</em></p>
 
 <p>Sometimes I forget that my best work occurs when I forego the cowboy coding, or unplanned unit of work because I already know how I want to implement something. That stupid lesson I keep having to learn over and over again is about
 testing first, driving design from need instead of gut feeling.</p>
@@ -370,114 +367,16 @@ testing first, driving design from need instead of gut feeling.</p>
 
 <p>And yes, this truly was not TDD as I wrote the functionality first and tests after, but the tests guided a refactor from an outside in approach. I could have improved upon the tests my stubbing the diff method, but I thought it better to show my honest work.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/15/creating-a-gemfile/">Creating a Gemfile</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Jim Nanney</span></span>
 
-<time datetime="2013-06-15T18:46:00-05:00" pubdate data-updated="true">Jun 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I wanted to add a quick note on how to create a gemfile.  In the simplest terms, use bundler.  It makes creating a Gem very easy!</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>bundle gem &lt;gemname&gt;
-</span><span class='line'>
-</span><span class='line'>$ bundle gem sudokusolver
-</span><span class='line'>      create  sudokusolver/Gemfile
-</span><span class='line'>      create  sudokusolver/Rakefile
-</span><span class='line'>      create  sudokusolver/LICENSE.txt
-</span><span class='line'>      create  sudokusolver/README.md
-</span><span class='line'>      create  sudokusolver/.gitignore
-</span><span class='line'>      create  sudokusolver/sudokusolver.gemspec
-</span><span class='line'>      create  sudokusolver/lib/sudokusolver.rb
-</span><span class='line'>      create  sudokusolver/lib/sudokusolver/version.rb
-</span><span class='line'>Initializating git repo in /Users/jimnanney/code/ruby/sudokusolver</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I create a separate gemset for each project.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rvm rvmrc create 2.0.0@sudokusolver --ruby-version</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Adding RSpec is simple as well.  Just add the following to the .gemspec and run bundle.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>spec.add_development_dependency "rspec", "~&gt;2.1"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Follow this with rpsec &#8211;init and your spec directory and .spec_helper and .rspec will be created for you.</p>
-
-<p>You&#8217;ll also want to add the following to your Rakefile to create the RSpec tasks:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>require 'rspec/core/rake_task'
-</span><span class='line'>
-</span><span class='line'>RSpec::Core::RakeTask.new(:spec)
-</span><span class='line'>
-</span><span class='line'>task :default =&gt; :spec</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/">Ruby String.split Regex Gotcha</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -489,440 +388,34 @@ testing first, driving design from need instead of gut feeling.</p>
   
 
 
-<time datetime="2013-05-27T09:38:00-05:00" pubdate data-updated="true">May 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>Using String.split and a regexp input might not behave how you think it should.</h3>
-
-<p>Yesterday I was a attempting to split an input string into an array of nine character wide strings.  String.split seemed like a perfect tool for the job. However, I found a slight problem. Any regular expression sent to split is treated as the delimiter, not the capture.  This results in the empty array as there is nothing in between the splits to collect into the array.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>"1234567890111222333444555666".split /\d{9}/
-</span><span class='line'>=&gt; []</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We can verify this by adding a delimiter to the input string.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>"123456789,111222333,444555666".split /\d{9}/
-</span><span class='line'>=&gt; ["", ",", ","]</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The &#8220;aha&#8221; moment is the regular expression is used to determine the delimiter, not the captured values.  This is a bit different than I expected.  So being clever, I thought, let&#8217; use capture groups in the regexp.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>"1234567890111222333444555666".split /(\d{9})/
-</span><span class='line'>=&gt; ["", "123456789", "", "111222333", "", "444555666"]</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Wait, what happened?  Why the empty strings still?  Remember, it is still using the regexp for the delimiter. The text that is not part of the delimiter is still returned.  The captured text from the regexp is also returned.</p>
-
-<p>It is stated in the ruby core docs, it just isn&#8217;t so clear what is going on until you test it like above.</p>
-
-<blockquote><p>If pattern is a Regexp, str is divided where the pattern matches. Whenever the pattern matches a zero-length string, str is split into individual characters. If pattern contains groups, the respective matches will be returned in the array as well.</p></blockquote>
-
-<p>So what is the correct way to accomplish our goal of splitting the text into 9 character length arrays when no delimiter is present?</p>
-
-<h4>String.scan</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>"123456789111222333444555666".scan /\d{9}/
-</span><span class='line'>=&gt; ["123456789", "111222333", "444555666"]</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So lesson learned, always check your assumptions.  Thankfully, unit tests showed me what I was doing wrong before this got really ugly and hard to chase down.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-12-17T20:06:00-06:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2013/05/15/code-happy/">Code Happy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
-
-
-<time datetime="2013-05-15T22:58:00-05:00" pubdate data-updated="true">May 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What a wonderful day today turned out to be.  I slept so little last night, fought poor variable naming at work, had a phone conversation with another company about possibly coming to work for them, decided it was a bad choice, couldn&#8217;t nap after work, and after all that, began to enjoy myself.</p>
-
-<p>I pair programmed with a new friend thanks to the #pairwithme hashtag. From sending out that tweet, I met @Mattr. He introduced me to a project that needed some refactoring love.  He drove, I learned lots and contributed a little.  But in the end, I got to become entranced in a new project, and even better, gained a pet project to level up on using pull requests.  I learn best by doing, but occasionally I require the mentoring of someone more versed in the project/language. Open source software and pairing really gives both of those to me.</p>
-
-<p>Overall, it just caused me to get into a happy coding place, one that is collaborative an communicative.</p>
-
-<p>I wish you all find that place.</p>
-
-<h2>Code Happy!</h2>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/" data-via="jnanney" data-counturl="http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/12/fixing-pow-rails-4-startup-problem/">Fixing Pow Rails 4 Startup Problem</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-12T14:50:00-05:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I just had an interesting problem trying to use pow for a Rails 4 project for the first time.</p>
-
-<p>Pow was reporting an error parsing the following line in  <strong>config/application.rb</strong></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config/application.rb:11: syntax error, unexpected ':', expecting ')'
-</span><span class='line'>Bundler.require(*Rails.groups(assets: %w(development test)))</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That error message really looks like Ruby 1.8 trying to parse the new hash syntax. And in fact that is exactly what it is.</p>
-
-<p>It turns out that I had RVM configured wrong.  I use zsh and in my .zshrc I had the startup for rvm.  If the rvm script doesn&#8217;t get called the default system ruby is used with pow.  In the case of pow, it never loads the .zshrc because that is only called for interactive environments. The solution is to move the lines that call rvm from .zshrc to a new or exisiting .zshenv. Once you do this you will have to kill the exisiting pow process <strong>ps ax |grep pow</strong></p>
-
-<p>I really love using pow during development as it allows me to completely ignore the localhost:3000 and 5000 and other ports and can load the app in my browser by name instead.</p>
-
-<p>You can find pow and the documentation from <a href="http://pow.cx" title="Pow.cx">Pow.cx</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+        <a class="basic-alignment left" href="/blog/2013/06/15/creating-a-gemfile/" title="Previous Post: Creating a Gemfile">&laquo; Creating a Gemfile</a>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/09/more-remote-pairing-tips/">More Remote Pairing Tips</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-09T20:51:00-05:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In my latest session of what I am learning I have begun setting up an EC2 instance to handle remote pair programming.  The biggest reason to do this is because it eliminates the need to setup so many little pieces at home.  It seems every remote pair session I start, begins with me explaining the ssh command to login to my laptop only to find that my dynamic dns is changed and ssh doesn&#8217;t work.  Inevitably I also miss that my router has port forwarded ssh to the wrong machine. Then there is the need to make sure a common user is setup, or that the permissions are setup on the socket that tmux uses.</p>
-
-<blockquote><p>In the classic scream of the 80s: STOP THE MADNESS!!!!!!</p></blockquote>
-
-<p>If something is painful, stop, evaluate what makes it painful, and find a way to relieve at least some of it.  In this case, that means stop reconfiguring everything each time and do it once on Amazon&#8217;s EC2 instances.</p>
-
-<p>So now that the mini rant is done, let me point out some great tips on remote pairing.</p>
-
-<h3>Pick a sensible project</h3>
-
-<p>If this is the first session you and someone else has ever done.  Don&#8217;t do serious work. Do a code kata, or pick a code retreat style project. This enables you to focus your attention on how you work together, not the problem you are trying to solve.  Pairing is about communicating, and if you don&#8217;t give yourself time to learn how each other communicates, you won&#8217;t solve problems together well. If you don&#8217;t have one, let me suggest one from my friend <a href="http://billgathen.com/" title="My #rubyfriend Bill Gathen">Bill Gathen</a>. He put together the <a href="http://billgathen.com/2013/01/18/7_degrees_of_fizzbuzz.html" title="7 Degrees of Fizzbuzz, learning ruby for beginners, kata for old hands">7 Degrees of Fizzbuzz</a> for the groups he teaches.</p>
-
-<h3>Start your tools with vanilla config files</h3>
-
-<p>If you both have wildly differing vim configurations and key remappings, only one person will be comfortable driving. Also, the same goes for tmux configs. A remapped leader key kills productivity for the driver.</p>
-
-<h3>Setup your login motd to explain how to get the session started</h3>
-
-<p>I can&#8217;t tell you how well this works to ease the nerves of the begining pair and sets the tone for the rest of the session.</p>
-
-<p>Here&#8217;s mine as an example</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  _       _         _                                   
-</span><span class='line'> ( )  _  ( )       (_ )                                 
-</span><span class='line'> | | ( ) | |   __   | |    ___    _     ___ ___     __  
-</span><span class='line'> | | | | | | /'__`\ | |  /'___) /'_`\ /' _ ` _ `\ /'__`\
-</span><span class='line'> | (_/ \_) |(  ___/ | | ( (___ ( (_) )| ( ) ( ) |(  ___/
-</span><span class='line'> `\___x___/'`\____)(___)`\____)`\___/'(_) (_) (_)`\____)
-</span><span class='line'>                                                        
-</span><span class='line'>                                                                                                              
-</span><span class='line'>I'm glad you could join me in my journey of learning Ruby, 
-</span><span class='line'>Rails, vim, and tmux. I am still new in so many regards, and 
-</span><span class='line'>I welcome your inputs, criticisms, and patience with my knowledge. 
-</span><span class='line'>I am sure we will both work well together.
-</span><span class='line'>
-</span><span class='line'>Now that you have logged in, you can join my pairing session 
-</span><span class='line'>by typing the following at your prompt:
-</span><span class='line'>
-</span><span class='line'>~~~
-</span><span class='line'>tmux -S /usr/local/tmux/learning attach
-</span><span class='line'>~~~
-</span><span class='line'>
-</span><span class='line'>Then increase the size of your terminal as far as it can go.
-</span><span class='line'>If your screen resolution is larger than 1920x1200 your terminal 
-</span><span class='line'>will be filled with dots outside of my screen's resolution.
-</span><span class='line'>
-</span><span class='line'>I tend to tab complete alot.  In Mac terminals this causes a *lot* 
-</span><span class='line'>of audible bell sounds. If you want to turn them off, go to preferences, 
-</span><span class='line'>Settings, and under the advanced tab, uncheck audible bell.
-</span><span class='line'>
-</span><span class='line'>Happy Pairing!
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/06/vim-automatic-registers/">VIM Automatic Registers</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-06T19:48:00-05:00" pubdate data-updated="true">May 6<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Vim adventures has taught me an incredible new (to me) trick.  The ability to paste a previously deleted line is easy.  Use <strong>p</strong> or <strong>P</strong> to paste it.  But what if it was the third time you hit <strong>dd</strong> and you wanted to paste in the first thing you deleted.  I cannot begin to count the number of times I needed to do that.  Further down, I&#8217;ll reveal this secret, but first the backstory:</p>
-
-<p>Recently I saw a link to <a href="http://vim-adventures.com/" title="Vim Adventures">Vim-Adventures.com</a> and followed.  It was appealing, but seemed basic in the first three levels.  So I decided not to purchase the subscription.</p>
-
-<p>And then, at Rails Conf 2013 in Portland, I met up with a friend who was working through one of the levels.  I immediately asked if she was playing vim adventures and she said yes and that she was stuck.  Of course I offered to assist.  This proved several points to me right away.</p>
-
-<blockquote><p>First, I am not as good with VIM as I had thought.</p>
-
-<p>Second, I am a horrible teacher of things I have little grasp on.</p>
-
-<p>Third, Vim Adventures advances terribly quick after level 3 and is well worth the subscription.</p></blockquote>
-
-<p>It was inevitable afterwards that I subscribed.  I have learned a ton, and the most profound ended up being the automatic buffers.</p>
-
-<p>Here&#8217;s how they work:</p>
-
-<p>Given these lines:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Delete me last.
-</span><span class='line'>Delete me third.
-</span><span class='line'>Delete me first.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If you delete line three by using <strong>dd</strong>, followed by line one with another <strong>dd</strong> and then line two with again a <strong>dd</strong>, several deletion registers would be created.</p>
-
-<p>You can see these by typing <strong>:reg</strong></p>
-
-<p>First, notice they are numbered from <strong>&#8220;1</strong> to <strong>&#8220;9</strong> and that they are in order from first in to last in. They also rotate out as more are added.</p>
-
-<p>So to paste the first deletion from above, you would use <strong>&#8220;3p</strong></p>
-
-<p>This simple thing has bothered me many times, but not enough to look it up. After playing vim adventures to level 10, I&#8217;ve learned this new trick.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/25/remote-pairing-lessons-learned/">Remote Pairing - Lessons Learned</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-25T09:07:00-06:00" pubdate data-updated="true">Nov 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When I first encountered and heard the term pair programming, I was amazed at the possibilities.  It takes programming to a communication exercise rather than logic puzzle, and gets two seperate minds working on the same problem.  Living in the location that I am in, pair programming was not an option unless it was remote.  Remote pairing seems like an exciting and productive way to work.</p>
-
-<p>I have come close to what you might call pair programming while helping my wife learn Ruby.  She has worked on some small programs with me in the background giving advice and steering her in the right direction.  And she has once sat in the non-drivers seat and asked questions as I worked a problem.  However, this did not prepare me for remote pairing.</p>
+    </p>
+  </footer>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/11/25/remote-pairing-lessons-learned/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/24/my-tmux-config-explained/">My Tmux Config Explained</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-24T23:42:00-06:00" pubdate data-updated="true">Nov 24<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Before I get too far into my posts on pairing I wanted to start adding my configuration files and why I have chosen to use the pieces in them.</p>
-
-<p>I must admit that prior to this week I had never used tmux.  I heard the ruby rogues talk about it on their podacst. However, being a previous Linux admin, I have used and taught others to use screen for any task that was important, or long running.  Largely due to the simple fact that a session could be detached and reattached.</p>
-
-<p>Tmux is like screen on steroids.  I have never used panes within screen and tmux makes this easy to do.  With a few customizations it is incredibly useful, and your fingers rarely leave the home row on a keyboard!</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/11/24/my-tmux-config-explained/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -955,7 +448,7 @@ testing first, driving design from need instead of gut feeling.</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/jimnanney">@jimnanney</a> on GitHub
@@ -985,7 +478,7 @@ testing first, driving design from need instead of gut feeling.</p>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -1005,6 +498,7 @@ testing first, driving design from need instead of gut feeling.</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -1014,19 +508,6 @@ testing first, driving design from need instead of gut feeling.</p>
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'jimnanney';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

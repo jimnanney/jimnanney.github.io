@@ -4,7 +4,7 @@
   <title><![CDATA[Jim Nanney]]></title>
   <link href="http://blog.jimnanney.com/atom.xml" rel="self"/>
   <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-05-27T10:29:27-05:00</updated>
+  <updated>2013-12-19T16:59:18-06:00</updated>
   <id>http://blog.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -12,6 +12,353 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[TDD Your Rakefile]]></title>
+    <link href="http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/"/>
+    <updated>2013-12-17T20:06:00-06:00</updated>
+    <id>http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile</id>
+    <content type="html"><![CDATA[<p><em>TLDR - Rake Tasks can be broken into objects, objects can be easily TDD&#8217;d.</em></p>
+
+<p>Sometimes I forget that my best work occurs when I forego the cowboy coding, or unplanned unit of work because I already know how I want to implement something. That stupid lesson I keep having to learn over and over again is about
+testing first, driving design from need instead of gut feeling.</p>
+
+<p>Rakefiles tend to give me a junk drawer of untested code I use consistantly but without tests. (Thanks to @sarahmei for the perfect wording here)</p>
+
+<p>The thing is that no matter what I allow my gut to feel, or my instinct to drive, I have to abide by processes. Processes provide repeatability, both in results and in how I accomplish those results. TDD provides an awesome process to drive a design. This doesn&#8217;t mean I should never deviate, but as Sandi Metz stated, follow the rules until you understand why you should not.</p>
+
+<p>Rakefiles consists of Tasks and Rules, in this post I&#8217;ll address tasks.  In a later followup, I&#8217;ll go into detail on testing rules.</p>
+
+<h2>Testing Tasks</h2>
+
+<p>So the thing that I was working on that brought this about was a single task. The task was to get a list of files that are different in my git repository from what is located in my work&#8217;s PVCS repository and insert it into a word document for our Configuration Management team. The task is repetitive and enough of a pain that once I was able to install Ruby on my work desktop, I immediately wanted to change it to a Rake task.</p>
+
+<p>Before writing the tests I started with a spike (or for those who don&#8217;t know my code word, I did it without writing tests first).</p>
+
+<p>Here was the task as it stood at first.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:pvcs</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;Get repo differences from pvcs files&quot;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:localchanges</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">added</span><span class="p">,</span> <span class="n">removed</span><span class="p">,</span> <span class="n">modified</span> <span class="o">=</span> <span class="o">[[]</span><span class="p">,</span> <span class="o">[]</span><span class="p">,</span> <span class="o">[]]</span>
+</span><span class='line'>    <span class="sb">`git --work-tree=</span><span class="si">#{</span><span class="n">filepath</span><span class="si">}</span><span class="sb"> status --short`</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">marker</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">added</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="k">if</span> <span class="n">marker</span> <span class="o">===</span> <span class="s2">&quot;D&quot;</span>
+</span><span class='line'>      <span class="n">removed</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="k">if</span> <span class="n">marker</span> <span class="o">===</span> <span class="s2">&quot;??&quot;</span>
+</span><span class='line'>      <span class="n">modified</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="k">if</span> <span class="n">marker</span> <span class="o">===</span> <span class="s2">&quot;M&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Added</span><span class="se">\n</span><span class="si">#{</span><span class="n">added</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">added</span><span class="o">.</span><span class="n">any?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Modified</span><span class="se">\n</span><span class="si">#{</span><span class="n">modified</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">modified</span><span class="o">.</span><span class="n">any?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Removed</span><span class="se">\n</span><span class="si">#{</span><span class="n">removed</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">removed</span><span class="o">.</span><span class="n">any?</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yes, this functions well, and doesn&#8217;t insert anything into a word document.  This is the point where I realized what I was doing was in desperate need of TDD and not cowboy coding. So let&#8217;s try this.  My first (unsuccessful) attempt was to reuse the above code and just write a test.  Sparing the details, it is very hard to setup a git repo, a checked out working copy and then running rake to verify, the above works.</p>
+
+<p>My next approach was a somewhat more sane approach. It dawned on me that everything within the task do end block needed to be broken out into it&#8217;s own object.  Objects are infinitely more testable than testing the rake task.  My side note here is that it also dawned on me that testing the fact that the task runs is similar to testing rails generators.  Basically, rake has a maintainer, and it isn&#8217;t me.</p>
+
+<p>So breaking down the task contents into a TDD&#8217;d object is a little simpler.</p>
+
+<p>I&#8217;m going to pretend you understand the TDD process of writing a test and just enough code to make the test pass, then refactoring the code, and finally refactoring the test. Below is a the resulting tests.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;minitest/autorun&#39;</span>
+</span><span class='line'><span class="n">require_relative</span> <span class="s1">&#39;file_changes&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">FileChangesTest</span> <span class="o">&lt;</span> <span class="no">MiniTest</span><span class="o">::</span><span class="no">Unit</span><span class="o">::</span><span class="no">TestCase</span>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_has_added</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">assert_respond_to</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="ss">:added</span><span class="p">)</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_has_removed</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">assert_respond_to</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="ss">:removed</span><span class="p">)</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_has_modified</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">assert_respond_to</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="ss">:modified</span><span class="p">)</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_classifies_added_files</span>
+</span><span class='line'>   <span class="n">filelist</span> <span class="o">=</span> <span class="s2">&quot; D Rakefile</span><span class="se">\n</span><span class="s2"> D file_changes_test.rb&quot;</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">classifier</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">filelist</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">assert_equal</span> <span class="n">classifier</span><span class="o">.</span><span class="n">added</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;Rakefile&quot;</span><span class="p">,</span> <span class="s2">&quot;file_changes_test.rb&quot;</span><span class="o">]</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_classifies_removed_files</span>
+</span><span class='line'>   <span class="n">filelist</span> <span class="o">=</span> <span class="s2">&quot;?? Rakefile</span><span class="se">\n</span><span class="s2">?? file_changes_test.rb&quot;</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">classifier</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">filelist</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">assert_equal</span> <span class="n">classifier</span><span class="o">.</span><span class="n">removed</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;Rakefile&quot;</span><span class="p">,</span> <span class="s2">&quot;file_changes_test.rb&quot;</span><span class="o">]</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_classifies_modified_files</span>
+</span><span class='line'>   <span class="n">filelist</span> <span class="o">=</span> <span class="s2">&quot;M Rakefile</span><span class="se">\n</span><span class="s2">M file_changes_test.rb&quot;</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">classifier</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">filelist</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">assert_equal</span> <span class="n">classifier</span><span class="o">.</span><span class="n">modified</span><span class="p">,</span> <span class="o">[</span><span class="s2">&quot;Rakefile&quot;</span><span class="p">,</span> <span class="s2">&quot;file_changes_test.rb&quot;</span><span class="o">]</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_classifies_nothing_when_empty</span>
+</span><span class='line'>   <span class="n">filelist</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">classifier</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">filelist</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">assert_empty</span> <span class="n">classifier</span><span class="o">.</span><span class="n">added</span>
+</span><span class='line'>   <span class="n">assert_empty</span> <span class="n">classifier</span><span class="o">.</span><span class="n">removed</span>
+</span><span class='line'>   <span class="n">assert_empty</span> <span class="n">classifier</span><span class="o">.</span><span class="n">modified</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'> <span class="k">def</span> <span class="nf">test_classifes_nothing_when_unknown_marker</span>
+</span><span class='line'>   <span class="n">filelist</span> <span class="o">=</span> <span class="s2">&quot; C Rakefile</span><span class="se">\n</span><span class="s2"> C file_changes_test.rb&quot;</span>
+</span><span class='line'>   <span class="n">classifier</span> <span class="o">=</span> <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>   <span class="n">classifier</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">filelist</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">assert_empty</span> <span class="n">classifier</span><span class="o">.</span><span class="n">added</span>
+</span><span class='line'>   <span class="n">assert_empty</span> <span class="n">classifier</span><span class="o">.</span><span class="n">removed</span>
+</span><span class='line'>   <span class="n">assert_empty</span> <span class="n">classifier</span><span class="o">.</span><span class="n">modified</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And with these tests the FileChanges class looks better.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">FileChanges</span>
+</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:modified</span><span class="p">,</span> <span class="ss">:removed</span><span class="p">,</span> <span class="ss">:added</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@modified</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>    <span class="vi">@removed</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>    <span class="vi">@added</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">diff</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</span><span class='line'>    <span class="sb">`git --work-tree=</span><span class="si">#{</span><span class="n">filepath</span><span class="si">}</span><span class="sb"> status --short`</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">find</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span><span class='line'>    <span class="no">FileChanges</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">tap</span> <span class="k">do</span> <span class="o">|</span><span class="n">m</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">m</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="n">m</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">f</span><span class="p">)}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">marker</span><span class="p">,</span> <span class="n">file</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">modified</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="k">if</span> <span class="n">marker</span> <span class="o">===</span> <span class="s2">&quot;M&quot;</span>
+</span><span class='line'>    <span class="n">added</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="k">if</span> <span class="n">marker</span> <span class="o">===</span> <span class="s2">&quot;D&quot;</span>
+</span><span class='line'>    <span class="n">removed</span> <span class="o">&lt;&lt;</span> <span class="n">file</span> <span class="k">if</span> <span class="n">marker</span> <span class="o">===</span> <span class="s2">&quot;??&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">to_s</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Modified:</span><span class="se">\n</span><span class="si">#{</span><span class="n">modified</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">modified</span><span class="o">.</span><span class="n">any?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Added:</span><span class="se">\n</span><span class="si">#{</span><span class="n">added</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">added</span><span class="o">.</span><span class="n">any?</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Removed:</span><span class="se">\n</span><span class="si">#{</span><span class="n">removed</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">removed</span><span class="o">.</span><span class="n">any?</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the resulting rake task is much simpler, and now has tested code driving it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">desc</span> <span class="s2">&quot;PVCS related tasks&quot;</span>
+</span><span class='line'><span class="n">namespace</span> <span class="ss">:pvcs</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">desc</span> <span class="s2">&quot;List files that are different from what is stored in the PVCS reference Directory&quot;</span>
+</span><span class='line'>  <span class="n">task</span> <span class="ss">:localchanges</span> <span class="k">do</span>
+</span><span class='line'>    <span class="no">FileChanges</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;PVCS Path&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This makes the task a single line and gives me test coverage for the task in the Rakefile.</p>
+
+<p>Hopefully this illustrates how I test rake tasks.  Trying to test the functionality of rake along with the task is hard and a good indicator that I was testing the wrong thing.</p>
+
+<p>And yes, this truly was not TDD as I wrote the functionality first and tests after, but the tests guided a refactor from an outside in approach. I could have improved upon the tests my stubbing the diff method, but I thought it better to show my honest work.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a Gemfile]]></title>
+    <link href="http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile/"/>
+    <updated>2013-06-15T18:46:00-05:00</updated>
+    <id>http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile</id>
+    <content type="html"><![CDATA[<p>I wanted to add a quick note on how to create a gemfile.  In the simplest terms, use bundler.  It makes creating a Gem very easy!</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundle gem &lt;gemname&gt;
+</span><span class='line'>
+</span><span class='line'>$ bundle gem sudokusolver
+</span><span class='line'>      create  sudokusolver/Gemfile
+</span><span class='line'>      create  sudokusolver/Rakefile
+</span><span class='line'>      create  sudokusolver/LICENSE.txt
+</span><span class='line'>      create  sudokusolver/README.md
+</span><span class='line'>      create  sudokusolver/.gitignore
+</span><span class='line'>      create  sudokusolver/sudokusolver.gemspec
+</span><span class='line'>      create  sudokusolver/lib/sudokusolver.rb
+</span><span class='line'>      create  sudokusolver/lib/sudokusolver/version.rb
+</span><span class='line'>Initializating git repo in /Users/jimnanney/code/ruby/sudokusolver</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I create a separate gemset for each project.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm rvmrc create 2.0.0@sudokusolver --ruby-version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Adding RSpec is simple as well.  Just add the following to the .gemspec and run bundle.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>spec.add_development_dependency "rspec", "~&gt;2.1"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Follow this with rpsec &#8211;init and your spec directory and .spec_helper and .rspec will be created for you.</p>
+
+<p>You&#8217;ll also want to add the following to your Rakefile to create the RSpec tasks:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>require 'rspec/core/rake_task'
+</span><span class='line'>
+</span><span class='line'>RSpec::Core::RakeTask.new(:spec)
+</span><span class='line'>
+</span><span class='line'>task :default =&gt; :spec</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby String.split Regex Gotcha]]></title>

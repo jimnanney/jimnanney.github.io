@@ -5,11 +5,20 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Config - Jim Nanney</title>
+  <title>Creating a Gemfile - Jim Nanney</title>
   <meta name="author" content="Jim Nanney">
 
   
-  <meta name="description" content="Category: Config">
+  <meta name="description" content="I wanted to add a quick note on how to create a gemfile. In the simplest terms, use bundler. It makes creating a Gem very easy! 1
+2
+3
+4
+5
+6
+7
+8
+9
+10 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +27,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.jimnanney.comblog/categories/config/">
+  <link rel="canonical" href="http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -65,35 +74,138 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Config</h1>
+    
+      <h1 class="entry-title">Creating a Gemfile</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-15T18:46:00-05:00" pubdate data-updated="true">Jun 15<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I wanted to add a quick note on how to create a gemfile.  In the simplest terms, use bundler.  It makes creating a Gem very easy!</p>
 
-  
-  <h2>2012</h2>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundle gem &lt;gemname&gt;
+</span><span class='line'>
+</span><span class='line'>$ bundle gem sudokusolver
+</span><span class='line'>      create  sudokusolver/Gemfile
+</span><span class='line'>      create  sudokusolver/Rakefile
+</span><span class='line'>      create  sudokusolver/LICENSE.txt
+</span><span class='line'>      create  sudokusolver/README.md
+</span><span class='line'>      create  sudokusolver/.gitignore
+</span><span class='line'>      create  sudokusolver/sudokusolver.gemspec
+</span><span class='line'>      create  sudokusolver/lib/sudokusolver.rb
+</span><span class='line'>      create  sudokusolver/lib/sudokusolver/version.rb
+</span><span class='line'>Initializating git repo in /Users/jimnanney/code/ruby/sudokusolver</span></code></pre></td></tr></table></div></figure>
 
-<article>
-  
-<h1><a href="/blog/2012/11/24/my-tmux-config-explained/">My tmux config Explained</a></h1>
-<time datetime="2012-11-24T23:42:00-06:00" pubdate><span class='month'>Nov</span> <span class='day'>24</span> <span class='year'>2012</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/config/'>Config</a>, <a class='category' href='/blog/categories/remote-pairing/'>Remote Pairing</a>, <a class='category' href='/blog/categories/tmux/'>tmux</a></span>
-</footer>
+<p>I create a separate gemset for each project.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rvm rvmrc create 2.0.0@sudokusolver --ruby-version</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>Adding RSpec is simple as well.  Just add the following to the .gemspec and run bundle.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>spec.add_development_dependency "rspec", "~&gt;2.1"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Follow this with rpsec &#8211;init and your spec directory and .spec_helper and .rspec will be created for you.</p>
+
+<p>You&#8217;ll also want to add the following to your Rakefile to create the RSpec tasks:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>require 'rspec/core/rake_task'
+</span><span class='line'>
+</span><span class='line'>RSpec::Core::RakeTask.new(:spec)
+</span><span class='line'>
+</span><span class='line'>task :default =&gt; :spec</span></code></pre></td></tr></table></div></figure>
+
+
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Jim Nanney</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-15T18:46:00-05:00" pubdate data-updated="true">Jun 15<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile/" data-via="jnanney" data-counturl="http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/" title="Previous Post: Ruby String.split Regex Gotcha">&laquo; Ruby String.split Regex Gotcha</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/12/17/tdd-your-rakefile/" title="Next Post: TDD Your Rakefile">TDD Your Rakefile &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>
@@ -190,19 +302,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'jimnanney';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
