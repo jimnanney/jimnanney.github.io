@@ -4,7 +4,7 @@
   <title><![CDATA[Jim Nanney]]></title>
   <link href="http://www.jimnanney.com/atom.xml" rel="self"/>
   <link href="http://www.jimnanney.com/"/>
-  <updated>2013-12-20T15:23:17-06:00</updated>
+  <updated>2013-12-20T15:27:33-06:00</updated>
   <id>http://www.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
@@ -28,6 +28,9 @@ testing first, driving design from need instead of gut feeling.</p>
 <p>The thing is that no matter what I allow my gut to feel, or my instinct to drive, I have to abide by processes. Processes provide repeatability, both in results and in how I accomplish those results. TDD provides an awesome process to drive a design. This doesn&#8217;t mean I should never deviate, but as Sandi Metz stated, follow the rules until you understand why you should not.</p>
 
 <p>Rakefiles consists of Tasks and Rules, in this post I&#8217;ll address tasks.  In a later followup, I&#8217;ll go into detail on testing rules.</p>
+
+<!-- more -->
+
 
 <h2>Testing Tasks</h2>
 
