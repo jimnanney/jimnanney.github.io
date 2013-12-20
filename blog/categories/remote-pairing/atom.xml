@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: remote pairing | Jim Nanney]]></title>
-  <link href="http://blog.jimnanney.com/blog/categories/remote-pairing/atom.xml" rel="self"/>
-  <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-12-19T17:18:45-06:00</updated>
-  <id>http://blog.jimnanney.com/</id>
+  <link href="http://www.jimnanney.com/blog/categories/remote-pairing/atom.xml" rel="self"/>
+  <link href="http://www.jimnanney.com/"/>
+  <updated>2013-12-20T15:23:17-06:00</updated>
+  <id>http://www.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[More Remote Pairing Tips]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/"/>
+    <link href="http://www.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/"/>
     <updated>2013-05-09T20:51:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips</id>
+    <id>http://www.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips</id>
     <content type="html"><![CDATA[<p>In my latest session of what I am learning I have begun setting up an EC2 instance to handle remote pair programming.  The biggest reason to do this is because it eliminates the need to setup so many little pieces at home.  It seems every remote pair session I start, begins with me explaining the ssh command to login to my laptop only to find that my dynamic dns is changed and ssh doesn't work.  Inevitably I also miss that my router has port forwarded ssh to the wrong machine. Then there is the need to make sure a common user is setup, or that the permissions are setup on the socket that tmux uses.</p>
 
 <blockquote><p>In the classic scream of the 80s: STOP THE MADNESS!!!!!!</p></blockquote>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: gotcha | Jim Nanney]]></title>
-  <link href="http://blog.jimnanney.com/blog/categories/gotcha/atom.xml" rel="self"/>
-  <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-12-19T17:18:45-06:00</updated>
-  <id>http://blog.jimnanney.com/</id>
+  <link href="http://www.jimnanney.com/blog/categories/gotcha/atom.xml" rel="self"/>
+  <link href="http://www.jimnanney.com/"/>
+  <updated>2013-12-20T15:23:17-06:00</updated>
+  <id>http://www.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby String.split Regex Gotcha]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/"/>
+    <link href="http://www.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/"/>
     <updated>2013-05-27T09:38:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha</id>
+    <id>http://www.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha</id>
     <content type="html"><![CDATA[<h3>Using String.split and a regexp input might not behave how you think it should.</h3>
 
 <p>Yesterday I was a attempting to split an input string into an array of nine character wide strings.  String.split seemed like a perfect tool for the job. However, I found a slight problem. Any regular expression sent to split is treated as the delimiter, not the capture.  This results in the empty array as there is nothing in between the splits to collect into the array.</p>

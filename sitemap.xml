@@ -1,51 +1,51 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2012/11/24/my-tmux-config-explained/</loc>
+        <loc>http://www.jimnanney.com/blog/2012/11/24/my-tmux-config-explained/</loc>
         <lastmod>2013-05-27T10:25:17-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2012/11/25/remote-pairing-lessons-learned/</loc>
+        <loc>http://www.jimnanney.com/blog/2012/11/25/remote-pairing-lessons-learned/</loc>
         <lastmod>2013-05-27T10:26:12-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/</loc>
+        <loc>http://www.jimnanney.com/blog/2013/05/06/vim-automatic-registers/</loc>
         <lastmod>2013-05-27T10:26:33-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/</loc>
+        <loc>http://www.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/</loc>
         <lastmod>2013-05-27T10:26:54-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/</loc>
+        <loc>http://www.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/</loc>
         <lastmod>2013-05-27T10:27:26-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2013/05/15/code-happy/</loc>
+        <loc>http://www.jimnanney.com/blog/2013/05/15/code-happy/</loc>
         <lastmod>2013-05-27T10:27:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/</loc>
+        <loc>http://www.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/</loc>
         <lastmod>2013-05-27T10:28:09-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile/</loc>
+        <loc>http://www.jimnanney.com/blog/2013/06/15/creating-a-gemfile/</loc>
         <lastmod>2013-06-15T19:09:03-05:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/</loc>
+        <loc>http://www.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/</loc>
         <lastmod>2013-12-19T16:56:59-06:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/about/</loc>
+        <loc>http://www.jimnanney.com/about/</loc>
         <lastmod>2012-11-25T18:48:20-06:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/blog/archives/</loc>
+        <loc>http://www.jimnanney.com/blog/archives/</loc>
         <lastmod>2013-12-19T16:56:59-06:00</lastmod>
     </url>
     <url>
-        <loc>http://blog.jimnanney.com/</loc>
+        <loc>http://www.jimnanney.com/</loc>
         <lastmod>2013-12-19T16:56:59-06:00</lastmod>
     </url>
 </urlset>

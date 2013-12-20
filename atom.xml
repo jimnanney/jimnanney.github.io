@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Jim Nanney]]></title>
-  <link href="http://blog.jimnanney.com/atom.xml" rel="self"/>
-  <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-12-19T17:18:45-06:00</updated>
-  <id>http://blog.jimnanney.com/</id>
+  <link href="http://www.jimnanney.com/atom.xml" rel="self"/>
+  <link href="http://www.jimnanney.com/"/>
+  <updated>2013-12-20T15:23:17-06:00</updated>
+  <id>http://www.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[TDD Your Rakefile]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/"/>
+    <link href="http://www.jimnanney.com/blog/2013/12/17/tdd-your-rakefile/"/>
     <updated>2013-12-17T20:06:00-06:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/12/17/tdd-your-rakefile</id>
+    <id>http://www.jimnanney.com/blog/2013/12/17/tdd-your-rakefile</id>
     <content type="html"><![CDATA[<p><em>TLDR - Rake Tasks can be broken into objects, objects can be easily TDD&#8217;d.</em></p>
 
 <p>Sometimes I forget that my best work occurs when I forego the cowboy coding, or unplanned unit of work because I already know how I want to implement something. That stupid lesson I keep having to learn over and over again is about
@@ -297,9 +297,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[Creating a Gemfile]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile/"/>
+    <link href="http://www.jimnanney.com/blog/2013/06/15/creating-a-gemfile/"/>
     <updated>2013-06-15T18:46:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/06/15/creating-a-gemfile</id>
+    <id>http://www.jimnanney.com/blog/2013/06/15/creating-a-gemfile</id>
     <content type="html"><![CDATA[<p>I wanted to add a quick note on how to create a gemfile.  In the simplest terms, use bundler.  It makes creating a Gem very easy!</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -362,9 +362,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[Ruby String.split Regex Gotcha]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/"/>
+    <link href="http://www.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha/"/>
     <updated>2013-05-27T09:38:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha</id>
+    <id>http://www.jimnanney.com/blog/2013/05/27/ruby-string-dot-split-regex-gotcha</id>
     <content type="html"><![CDATA[<h3>Using String.split and a regexp input might not behave how you think it should.</h3>
 
 <p>Yesterday I was a attempting to split an input string into an array of nine character wide strings.  String.split seemed like a perfect tool for the job. However, I found a slight problem. Any regular expression sent to split is treated as the delimiter, not the capture.  This results in the empty array as there is nothing in between the splits to collect into the array.</p>
@@ -413,9 +413,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[Code Happy]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/05/15/code-happy/"/>
+    <link href="http://www.jimnanney.com/blog/2013/05/15/code-happy/"/>
     <updated>2013-05-15T22:58:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/05/15/code-happy</id>
+    <id>http://www.jimnanney.com/blog/2013/05/15/code-happy</id>
     <content type="html"><![CDATA[<p>What a wonderful day today turned out to be.  I slept so little last night, fought poor variable naming at work, had a phone conversation with another company about possibly coming to work for them, decided it was a bad choice, couldn&#8217;t nap after work, and after all that, began to enjoy myself.</p>
 
 <p>I pair programmed with a new friend thanks to the #pairwithme hashtag. From sending out that tweet, I met @Mattr. He introduced me to a project that needed some refactoring love.  He drove, I learned lots and contributed a little.  But in the end, I got to become entranced in a new project, and even better, gained a pet project to level up on using pull requests.  I learn best by doing, but occasionally I require the mentoring of someone more versed in the project/language. Open source software and pairing really gives both of those to me.</p>
@@ -430,9 +430,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[Fixing Pow Rails 4 Startup Problem]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/"/>
+    <link href="http://www.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem/"/>
     <updated>2013-05-12T14:50:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem</id>
+    <id>http://www.jimnanney.com/blog/2013/05/12/fixing-pow-rails-4-startup-problem</id>
     <content type="html"><![CDATA[<p>I just had an interesting problem trying to use pow for a Rails 4 project for the first time.</p>
 
 <p>Pow was reporting an error parsing the following line in  <strong>config/application.rb</strong></p>
@@ -455,9 +455,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[More Remote Pairing Tips]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/"/>
+    <link href="http://www.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips/"/>
     <updated>2013-05-09T20:51:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips</id>
+    <id>http://www.jimnanney.com/blog/2013/05/09/more-remote-pairing-tips</id>
     <content type="html"><![CDATA[<p>In my latest session of what I am learning I have begun setting up an EC2 instance to handle remote pair programming.  The biggest reason to do this is because it eliminates the need to setup so many little pieces at home.  It seems every remote pair session I start, begins with me explaining the ssh command to login to my laptop only to find that my dynamic dns is changed and ssh doesn&#8217;t work.  Inevitably I also miss that my router has port forwarded ssh to the wrong machine. Then there is the need to make sure a common user is setup, or that the permissions are setup on the socket that tmux uses.</p>
 
 <blockquote><p>In the classic scream of the 80s: STOP THE MADNESS!!!!!!</p></blockquote>
@@ -545,9 +545,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[VIM Automatic Registers]]></title>
-    <link href="http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers/"/>
+    <link href="http://www.jimnanney.com/blog/2013/05/06/vim-automatic-registers/"/>
     <updated>2013-05-06T19:48:00-05:00</updated>
-    <id>http://blog.jimnanney.com/blog/2013/05/06/vim-automatic-registers</id>
+    <id>http://www.jimnanney.com/blog/2013/05/06/vim-automatic-registers</id>
     <content type="html"><![CDATA[<p>Vim adventures has taught me an incredible new (to me) trick.  The ability to paste a previously deleted line is easy.  Use <strong>p</strong> or <strong>P</strong> to paste it.  But what if it was the third time you hit <strong>dd</strong> and you wanted to paste in the first thing you deleted.  I cannot begin to count the number of times I needed to do that.  Further down, I&#8217;ll reveal this secret, but first the backstory:</p>
 
 <p>Recently I saw a link to <a href="http://vim-adventures.com/" title="Vim Adventures">Vim-Adventures.com</a> and followed.  It was appealing, but seemed basic in the first three levels.  So I decided not to purchase the subscription.</p>
@@ -588,9 +588,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[Remote Pairing - Lessons Learned]]></title>
-    <link href="http://blog.jimnanney.com/blog/2012/11/25/remote-pairing-lessons-learned/"/>
+    <link href="http://www.jimnanney.com/blog/2012/11/25/remote-pairing-lessons-learned/"/>
     <updated>2012-11-25T09:07:00-06:00</updated>
-    <id>http://blog.jimnanney.com/blog/2012/11/25/remote-pairing-lessons-learned</id>
+    <id>http://www.jimnanney.com/blog/2012/11/25/remote-pairing-lessons-learned</id>
     <content type="html"><![CDATA[<p>When I first encountered and heard the term pair programming, I was amazed at the possibilities.  It takes programming to a communication exercise rather than logic puzzle, and gets two seperate minds working on the same problem.  Living in the location that I am in, pair programming was not an option unless it was remote.  Remote pairing seems like an exciting and productive way to work.</p>
 
 <p>I have come close to what you might call pair programming while helping my wife learn Ruby.  She has worked on some small programs with me in the background giving advice and steering her in the right direction.  And she has once sat in the non-drivers seat and asked questions as I worked a problem.  However, this did not prepare me for remote pairing.</p>
@@ -631,9 +631,9 @@ testing first, driving design from need instead of gut feeling.</p>
   
   <entry>
     <title type="html"><![CDATA[My tmux config Explained]]></title>
-    <link href="http://blog.jimnanney.com/blog/2012/11/24/my-tmux-config-explained/"/>
+    <link href="http://www.jimnanney.com/blog/2012/11/24/my-tmux-config-explained/"/>
     <updated>2012-11-24T23:42:00-06:00</updated>
-    <id>http://blog.jimnanney.com/blog/2012/11/24/my-tmux-config-explained</id>
+    <id>http://www.jimnanney.com/blog/2012/11/24/my-tmux-config-explained</id>
     <content type="html"><![CDATA[<p>Before I get too far into my posts on pairing I wanted to start adding my configuration files and why I have chosen to use the pieces in them.</p>
 
 <p>I must admit that prior to this week I had never used tmux.  I heard the ruby rogues talk about it on their podacst. However, being a previous Linux admin, I have used and taught others to use screen for any task that was important, or long running.  Largely due to the simple fact that a session could be detached and reattached.</p>

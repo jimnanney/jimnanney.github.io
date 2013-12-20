@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Config | Jim Nanney]]></title>
-  <link href="http://blog.jimnanney.com/blog/categories/config/atom.xml" rel="self"/>
-  <link href="http://blog.jimnanney.com/"/>
-  <updated>2013-12-19T17:18:45-06:00</updated>
-  <id>http://blog.jimnanney.com/</id>
+  <link href="http://www.jimnanney.com/blog/categories/config/atom.xml" rel="self"/>
+  <link href="http://www.jimnanney.com/"/>
+  <updated>2013-12-20T15:23:17-06:00</updated>
+  <id>http://www.jimnanney.com/</id>
   <author>
     <name><![CDATA[Jim Nanney]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[My tmux config Explained]]></title>
-    <link href="http://blog.jimnanney.com/blog/2012/11/24/my-tmux-config-explained/"/>
+    <link href="http://www.jimnanney.com/blog/2012/11/24/my-tmux-config-explained/"/>
     <updated>2012-11-24T23:42:00-06:00</updated>
-    <id>http://blog.jimnanney.com/blog/2012/11/24/my-tmux-config-explained</id>
+    <id>http://www.jimnanney.com/blog/2012/11/24/my-tmux-config-explained</id>
     <content type="html"><![CDATA[<p>Before I get too far into my posts on pairing I wanted to start adding my configuration files and why I have chosen to use the pieces in them.</p>
 
 <p>I must admit that prior to this week I had never used tmux.  I heard the ruby rogues talk about it on their podacst. However, being a previous Linux admin, I have used and taught others to use screen for any task that was important, or long running.  Largely due to the simple fact that a session could be detached and reattached.</p>
