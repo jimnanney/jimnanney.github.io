@@ -159,13 +159,13 @@ testing first, driving design from need instead of gut feeling.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Yes, this functions well, and doesn&#8217;t insert anything into a word document.  This is the point where I realized what I was doing was in desperate need of TDD and not cowboy coding. So let&#8217;s try this.  My first (unsuccessful) attempt was to reuse the above code and just write a test.  Sparing the details, it is very hard to setup a git repo, a checked out working copy and then running rake to verify, the above works.</p>
+<p>Yes, this functions well, and doesn&#8217;t insert anything into a word document.  This is the point where I realized what I was doing was in desperate need of TDD and not cowboy coding. So let&#8217;s try this.  My first (unsuccessful) attempt was to reuse the above code and just write a test.  Without going into too much depth, it is very hard to setup a test repository with a checked out working copy and then running rake to verify that the rake task works.</p>
 
 <p>My next approach was a somewhat more sane approach. It dawned on me that everything within the task do end block needed to be broken out into it&#8217;s own object.  Objects are infinitely more testable than testing the rake task.  My side note here is that it also dawned on me that testing the fact that the task runs is similar to testing rails generators.  Basically, rake has a maintainer, and it isn&#8217;t me.</p>
 
 <p>So breaking down the task contents into a TDD&#8217;d object is a little simpler.</p>
 
-<p>I&#8217;m going to pretend you understand the TDD process of writing a test and just enough code to make the test pass, then refactoring the code, and finally refactoring the test. Below is a the resulting tests.</p>
+<p>The TDD process is fairly simple: Write a test. Then write just enough code to make the test pass. Afterward refactor the code. And finally refactor the test. Below is the resulting tests.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -288,7 +288,7 @@ testing first, driving design from need instead of gut feeling.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>And with these tests the FileChanges class looks better.</p>
+<p>And with these tests the new FileChanges class becomes a tested task I can add to the Rakefile.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -380,7 +380,7 @@ testing first, driving design from need instead of gut feeling.</p>
 
 <p>Hopefully this illustrates how I test rake tasks.  Trying to test the functionality of rake along with the task is hard and a good indicator that I was testing the wrong thing.</p>
 
-<p>And yes, this truly was not TDD as I wrote the functionality first and tests after, but the tests guided a refactor from an outside in approach. I could have improved upon the tests my stubbing the diff method, but I thought it better to show my honest work.</p>
+<p>The tests guided a refactor from an outside in approach. I could have improved upon the tests by stubbing the diff method, but I thought it better to show my honest work.</p>
 </div>
 
 
